@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - College ID Only</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 15px; }
+        .card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { margin-top: 0; text-align: center; }
+        input, select, button { width: 100%; padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #cbd5e0; box-sizing: border-box; font-size: 16px; }
+        button { background: #16a34a; color: white; border: none; font-weight: bold; cursor: pointer; }
+        .alert { padding: 10px; border-radius: 6px; margin-bottom: 10px; background: #fee2e2; color: #b91c1c; font-size: 14px; }
+        .link { text-align: center; margin-top: 15px; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>Create Account</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, msg in messages %}
+            <div class="alert">{{ msg }}</div>
+        {% endfor %}
+    {% endwith %}
+    <form method="POST">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="College ID (*{{ domain }})" required>
+        <select name="role" required>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+        <input type="text" name="section" placeholder="Class / Section (e.g., CSE-A)" required>
+        <input type="password" name="password" placeholder="Create Password" required>
+        <button type="submit">Register</button>
+    </form>
+    <div class="link">Already registered? <a href="/login">Login here</a></div>
+</div>
+</body>
+</html>
